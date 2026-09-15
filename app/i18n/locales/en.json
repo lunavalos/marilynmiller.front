@@ -1,0 +1,130 @@
+{
+  "landing": {
+    "title": "MillyFit | Women's Strength & Transformation Coaching in Jacksonville",
+    "nav": {
+      "story": "My Story",
+      "inside": "What's Inside",
+      "join": "Join",
+      "community": "Community",
+      "get_started": "Get Started"
+    },
+    "hero": {
+      "eyebrow": "Jacksonville, FL &nbsp;♡&nbsp; Women's Fitness & Nutrition",
+      "title_1": "Fuerza.",
+      "title_script": "Fe. Bienestar.",
+      "subtitle": "Training, nutrition, and a community that will lift you up<br class=\"desktop-break\" />every day. <em>No matter your level.</em>",
+      "btn_start": "Start Your Journey",
+      "btn_story": "My Story",
+      "badge_nasm": "NASM Certified Personal Trainer",
+      "badge_nutrition": "Certified Nutrition Coach",
+      "badge_wellness": "Certified Wellness Coach",
+      "scroll": "Scroll"
+    },
+    "stats": {
+      "women": "Women Transformed",
+      "years": "Years Experience",
+      "certs": "Certifications",
+      "community": "Community"
+    },
+    "about": {
+      "eyebrow": "My Story",
+      "title": "Hi, I'm Marilyn<br /><em class=\"script-accent\">— and I get it.</em>",
+      "p1": "I'm a mom, nutrition and fitness professional, and a woman who knows what it feels like to lose yourself while taking care of everyone else.",
+      "p2": "I earned my Bachelor's degree in Nutrition in Mexico, where I began helping women through fitness bootcamps. I quickly realized that so many women wanted to feel stronger and healthier, but simply didn't know where to start.",
+      "p3": "After moving to the United States and becoming a mom, my own journey changed. Somewhere between motherhood, responsibilities, and building a new life, I stopped prioritizing myself.",
+      "quote": "\"That season became a turning point for me.\"",
+      "p4": "Today, I combine my education, experience, and personal journey to help other women do the same — because taking care of everyone you love shouldn't mean forgetting to take care of yourself.",
+      "cred_1": "Bachelor's in Nutrition",
+      "cred_2": "NASM Certified PT",
+      "cred_3": "Nutrition Coach",
+      "cred_4": "Wellness Coach",
+      "btn": "Join the Community"
+    },
+    "features": {
+      "eyebrow": "What's Inside?",
+      "title": "Everything you need<br /><em class=\"script-accent\">to flourish</em>",
+      "subtitle": "Not just workouts — a complete system designed to help you feel strong, confident, and consistent.",
+      "f1_title": "Strength Training",
+      "f1_text": "Beginner-friendly to advanced programming. Build real strength and see your body transform week by week.",
+      "f2_title": "Nutrition Guidance",
+      "f2_text": "Real food, real results. Evidence-based nutrition coaching to fuel your workouts and your life — without fad diets.",
+      "f3_title": "Supportive Community",
+      "f3_text": "You're never alone. A sisterhood of women cheering you on, celebrating wins, and showing up for each other every day.",
+      "f4_title": "Live Sessions",
+      "f4_text": "Real-time coaching with Marilyn. Ask questions, get corrections, and feel the energy of training together live.",
+      "f5_title": "Your Schedule",
+      "f5_text": "Unlimited classes with flexible timing. Train at a time that works for your busy life as a mom, professional, and human being.",
+      "f6_title": "Personalized Approach",
+      "f6_text": "No cookie-cutter plans. Marilyn meets you where you are and guides you toward where you want to be — step by step."
+    },
+    "pricing": {
+      "eyebrow": "Join MillyFit",
+      "title": "Choose your<br /><em class=\"script-accent\">path</em>",
+      "subtitle": "Whether you want to try it out, commit to a community, or just drop in for a class — there's a perfect option for you.",
+      "p1_tag": "New Clients Only",
+      "p1_name": "2-Week Unlimited Classes",
+      "p1_desc": "The perfect way to experience MillyFit risk-free. Unlimited access to all classes for two full weeks.",
+      "p1_f1": "Unlimited group classes for 2 weeks",
+      "p1_f2": "Access to all class formats",
+      "p1_f3": "Welcome session with Marilyn",
+      "p1_f4": "Community access",
+      "p1_f5": "New clients only — no commitment",
+      "p1_btn": "Get Started Today",
+      "p2_tag": "Most Popular",
+      "p2_name": "MillyFit Membership",
+      "p2_desc": "Full access to the MillyFit community, unlimited classes, and everything you need to transform.",
+      "p2_f1": "Unlimited group classes",
+      "p2_f2": "All class formats included",
+      "p2_f3": "Nutrition guidance & resources",
+      "p2_f4": "Live sessions with Marilyn",
+      "p2_f5": "Private member community",
+      "p2_f6": "Monthly challenges & accountability",
+      "p2_f7": "Progress tracking support",
+      "p2_btn": "Join the Membership",
+      "p3_name": "Drop-In Class",
+      "p3_desc": "Try a single class whenever you like. Perfect for those who want flexibility without any commitment.",
+      "p3_f1": "Single class access",
+      "p3_f2": "Any class format",
+      "p3_f3": "No commitment required",
+      "p3_f4": "Welcome from the community",
+      "p3_btn": "Book a Class",
+      "note": "✦ &nbsp;Questions? DM Marilyn on Instagram or send us a message. We're happy to help you find the right fit."
+    },
+    "testimonials": {
+      "eyebrow": "The Community",
+      "title": "Real women.<br /><em class=\"script-accent\">Real results.</em>"
+    },
+    "faq": {
+      "eyebrow": "Questions",
+      "title": "Got<br /><em class=\"script-accent\">questions?</em>",
+      "subtitle": "We've got answers. If you don't see what you're looking for, reach out directly!",
+      "btn": "Join MillyFit ♡",
+      "q1": "Do I need experience to join?",
+      "a1": "Absolutely not! MillyFit is designed for women at all fitness levels. Whether you've never set foot in a gym or you're getting back after a break, Marilyn will meet you exactly where you are and guide you forward safely.",
+      "q2": "What's the difference between the plans?",
+      "a2": "The <strong>2-Week Intro</strong> is exclusively for new clients who want to experience MillyFit without commitment. The <strong>MillyFit Membership</strong> gives you full ongoing access to all classes, nutrition guidance, live sessions, and community. The <strong>Drop-In</strong> is perfect for occasional visitors who want flexibility.",
+      "q3": "Where are the classes held?",
+      "a3": "MillyFit offers both in-person classes in Jacksonville, FL and online access. Reach out directly to learn about current class schedules, locations, and online options that fit your lifestyle.",
+      "q4": "How does the nutrition coaching work?",
+      "a4": "Marilyn's nutrition coaching is practical and sustainable — no extreme diets, no counting every calorie. You'll get guidance on how to eat to fuel your training, manage energy levels, and enjoy food without guilt. It's about building long-term healthy habits.",
+      "q5": "Can I cancel my membership at any time?",
+      "a5": "Yes. The MillyFit Membership is flexible. You can cancel at any time without penalties. We believe in building a community where you stay because you love it — not because you're locked in.",
+      "q6": "How do I get started?",
+      "a6": "Simply choose the plan that's right for you above and complete your registration. New clients — we highly recommend starting with the 2-Week Unlimited Classes to experience MillyFit fully before committing to a membership."
+    },
+    "cta": {
+      "eyebrow": "Ready to start? ♡",
+      "title": "No matter your level,<br /><em class=\"script-accent-cta\">just bring the willingness</em>",
+      "subtitle": "Hundreds of women have already taken the first step.<br />Now it's your turn. You deserve to feel strong, confident, and cared for.",
+      "tagline": "✦ STRENGTH &nbsp;·&nbsp; FAITH &nbsp;·&nbsp; WELLNESS ✦",
+      "btn_primary": "Join MillyFit ♡",
+      "btn_ig": "Follow on Instagram"
+    },
+    "footer": {
+      "tagline": "Women's Strength &amp; Transformation Coaching<br />Jacksonville, FL",
+      "links_title_1": "Quick Links",
+      "links_title_2": "Plans",
+      "links_title_3": "Contact"
+    }
+  }
+}

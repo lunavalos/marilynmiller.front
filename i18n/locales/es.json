@@ -1,0 +1,130 @@
+{
+  "landing": {
+    "title": "MillyFit | Coaching de Fuerza y Transformación para Mujeres en Jacksonville",
+    "nav": {
+      "story": "Mi Historia",
+      "inside": "¿Qué Incluye?",
+      "join": "Únete",
+      "community": "Comunidad",
+      "get_started": "Comenzar"
+    },
+    "hero": {
+      "eyebrow": "Jacksonville, FL &nbsp;♡&nbsp; Fitness y Nutrición para Mujeres",
+      "title_1": "Fuerza.",
+      "title_script": "Fe. Bienestar.",
+      "subtitle": "Entrenamiento, nutrición y una comunidad que te va a levantar<br class=\"desktop-break\" />cada día. <em>Sin importar tu nivel.</em>",
+      "btn_start": "Inicia tu Transformación",
+      "btn_story": "Mi Historia",
+      "badge_nasm": "Entrenadora Personal Certificada NASM",
+      "badge_nutrition": "Coach de Nutrición Certificada",
+      "badge_wellness": "Coach de Bienestar Certificada",
+      "scroll": "Deslizar"
+    },
+    "stats": {
+      "women": "Mujeres Transformadas",
+      "years": "Años de Experiencia",
+      "certs": "Certificaciones",
+      "community": "Comunidad"
+    },
+    "about": {
+      "eyebrow": "Mi Historia",
+      "title": "Hola, soy Marilyn<br /><em class=\"script-accent\">— y yo lo entiendo.</em>",
+      "p1": "Soy mamá, profesional en nutrición y fitness, y una mujer que sabe lo que se siente perderse a sí misma mientras cuidas de todos los demás.",
+      "p2": "Obtuve mi licenciatura en Nutrición en México, donde comencé a ayudar a mujeres a través de bootcamps de fitness. Rápidamente me di cuenta de que muchas mujeres querían sentirse más fuertes y saludables, pero simplemente no sabían por dónde empezar.",
+      "p3": "Después de mudarme a los Estados Unidos y convertirme en mamá, mi propio viaje cambió. En algún punto entre la maternidad, las responsabilidades y construir una nueva vida, dejé de priorizarme.",
+      "quote": "\"Esa temporada se convirtió en un punto de inflexión para mí.\"",
+      "p4": "Hoy, combino mi educación, experiencia y viaje personal para ayudar a otras mujeres a hacer lo mismo — porque cuidar de todos los que amas no debería significar olvidar cuidarte a ti misma.",
+      "cred_1": "Licenciatura en Nutrición",
+      "cred_2": "Entrenadora NASM",
+      "cred_3": "Coach de Nutrición",
+      "cred_4": "Coach de Bienestar",
+      "btn": "Únete a la Comunidad"
+    },
+    "features": {
+      "eyebrow": "¿Qué incluye?",
+      "title": "Todo lo que necesitas<br /><em class=\"script-accent\">para florecer</em>",
+      "subtitle": "No solo ejercicios — un sistema completo diseñado para que te sientas fuerte, segura y constante.",
+      "f1_title": "Entrenamiento de Fuerza",
+      "f1_text": "Programas desde principiantes hasta avanzados. Construye fuerza real y ve tu cuerpo transformarse semana a semana.",
+      "f2_title": "Guía de Nutrición",
+      "f2_text": "Comida real, resultados reales. Coaching nutricional basado en evidencia para nutrir tus entrenamientos y tu vida — sin dietas de moda.",
+      "f3_title": "Comunidad de Apoyo",
+      "f3_text": "Nunca estás sola. Una hermandad de mujeres animándote, celebrando tus logros y apoyándose todos los días.",
+      "f4_title": "Sesiones en Vivo",
+      "f4_text": "Entrenamiento en tiempo real con Marilyn. Haz preguntas, recibe correcciones y siente la energía de entrenar juntas en vivo.",
+      "f5_title": "A tu Ritmo",
+      "f5_text": "Clases ilimitadas con horarios flexibles. Entrena en un momento que se adapte a tu vida ocupada como mamá, profesional y ser humano.",
+      "f6_title": "Enfoque Personalizado",
+      "f6_text": "Sin planes genéricos. Marilyn te recibe donde estás y te guía hacia donde quieres estar — paso a paso."
+    },
+    "pricing": {
+      "eyebrow": "Únete a MillyFit",
+      "title": "Elige tu<br /><em class=\"script-accent\">camino</em>",
+      "subtitle": "Ya sea que quieras probar, comprometerte con una comunidad o simplemente asistir a una clase — hay una opción perfecta para ti.",
+      "p1_tag": "Solo Nuevas Clientas",
+      "p1_name": "Clases Ilimitadas por 2 Semanas",
+      "p1_desc": "La manera perfecta de experimentar MillyFit sin riesgos. Acceso ilimitado a todas las clases por dos semanas completas.",
+      "p1_f1": "Clases grupales ilimitadas por 2 semanas",
+      "p1_f2": "Acceso a todos los formatos de clase",
+      "p1_f3": "Sesión de bienvenida con Marilyn",
+      "p1_f4": "Acceso a la comunidad",
+      "p1_f5": "Solo para clientes nuevas — sin compromiso",
+      "p1_btn": "Comienza Hoy",
+      "p2_tag": "Más Popular",
+      "p2_name": "Membresía MillyFit",
+      "p2_desc": "Acceso completo a la comunidad MillyFit, clases ilimitadas y todo lo que necesitas para transformarte.",
+      "p2_f1": "Clases grupales ilimitadas",
+      "p2_f2": "Todos los formatos de clase incluidos",
+      "p2_f3": "Guía de nutrición y recursos",
+      "p2_f4": "Sesiones en vivo con Marilyn",
+      "p2_f5": "Comunidad privada de miembros",
+      "p2_f6": "Retos mensuales y responsabilidad",
+      "p2_f7": "Apoyo de seguimiento de progreso",
+      "p2_btn": "Únete a la Membresía",
+      "p3_name": "Drop-In (1 Clase)",
+      "p3_desc": "Toma una clase individual cuando quieras. Perfecto para quienes buscan flexibilidad sin compromisos.",
+      "p3_f1": "Acceso a una sola clase",
+      "p3_f2": "Cualquier formato de clase",
+      "p3_f3": "Sin compromiso requerido",
+      "p3_f4": "Bienvenida por parte de la comunidad",
+      "p3_btn": "Reserva una Clase",
+      "note": "✦ &nbsp;¿Preguntas? Mándale un DM a Marilyn en Instagram o envíanos un mensaje. Nos encantará ayudarte a encontrar la opción ideal."
+    },
+    "testimonials": {
+      "eyebrow": "La Comunidad",
+      "title": "Mujeres reales.<br /><em class=\"script-accent\">Resultados reales.</em>"
+    },
+    "faq": {
+      "eyebrow": "Preguntas",
+      "title": "¿Tienes<br /><em class=\"script-accent\">preguntas?</em>",
+      "subtitle": "Tenemos respuestas. Si no encuentras lo que buscas, ¡escríbenos directamente!",
+      "btn": "Únete a MillyFit ♡",
+      "q1": "¿Necesito experiencia para unirme?",
+      "a1": "¡Para nada! MillyFit está diseñado para mujeres de todos los niveles. Ya sea que nunca hayas pisado un gimnasio o estés volviendo después de una pausa, Marilyn te recibirá exactamente donde estás y te guiará de manera segura.",
+      "q2": "¿Cuál es la diferencia entre los planes?",
+      "a2": "La <strong>Prueba de 2 Semanas</strong> es exclusivamente para nuevas clientas que quieran experimentar MillyFit sin compromiso. La <strong>Membresía MillyFit</strong> te da acceso continuo a todas las clases, nutrición, sesiones en vivo y comunidad. El <strong>Drop-In</strong> es perfecto para visitantes ocasionales.",
+      "q3": "¿Dónde se imparten las clases?",
+      "a3": "MillyFit ofrece clases presenciales en Jacksonville, FL, así como acceso online. Escríbenos para conocer los horarios, ubicaciones y opciones online actuales que se adapten a tu estilo de vida.",
+      "q4": "¿Cómo funciona el coaching de nutrición?",
+      "a4": "El coaching de nutrición de Marilyn es práctico y sostenible — sin dietas extremas ni conteo estricto de calorías. Aprenderás a comer para tener energía en tus entrenamientos y disfrutar la comida sin culpa.",
+      "q5": "¿Puedo cancelar mi membresía en cualquier momento?",
+      "a5": "Sí. La Membresía MillyFit es flexible. Puedes cancelar en cualquier momento sin penalizaciones. Creemos en construir una comunidad donde te quedas porque te encanta — no por un contrato.",
+      "q6": "¿Cómo empiezo?",
+      "a6": "Simplemente elige el plan adecuado para ti arriba y completa tu registro. Para clientas nuevas — recomendamos mucho empezar con las Clases Ilimitadas de 2 Semanas para experimentar MillyFit completamente."
+    },
+    "cta": {
+      "eyebrow": "¿Lista para empezar? ♡",
+      "title": "No importa tu nivel,<br /><em class=\"script-accent-cta\">solo trae la disposición</em>",
+      "subtitle": "Cientos de mujeres ya dieron el primer paso.<br />Ahora es tu turno. Mereces sentirte fuerte, segura y cuidada.",
+      "tagline": "✦ FUERZA &nbsp;·&nbsp; FE &nbsp;·&nbsp; BIENESTAR ✦",
+      "btn_primary": "Únete a MillyFit ♡",
+      "btn_ig": "Síguenos en Instagram"
+    },
+    "footer": {
+      "tagline": "Coaching de Fuerza y Transformación para Mujeres<br />Jacksonville, FL",
+      "links_title_1": "Enlaces Rápidos",
+      "links_title_2": "Planes",
+      "links_title_3": "Contacto"
+    }
+  }
+}
