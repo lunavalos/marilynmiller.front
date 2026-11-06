@@ -533,6 +533,15 @@ onMounted(() => {
          CTA FINAL
     ═══════════════════════════════════════════ -->
     <section class="final-cta">
+      <video
+        class="final-cta-video"
+        src="/cta-herobanner.webm"
+        autoplay
+        loop
+        muted
+        playsinline
+        aria-hidden="true"
+      ></video>
       <div class="final-cta-bg"></div>
       <div class="container">
         <div class="final-cta-content reveal-up">
