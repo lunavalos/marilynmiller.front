@@ -253,6 +253,11 @@ onMounted(() => {
     ═══════════════════════════════════════════ -->
     <section id="about" class="about">
       <div class="container">
+        <div class="section-header reveal-up">
+          <p class="section-eyebrow">{{ $t('landing.about.eyebrow') }}</p>
+          <h2 class="section-title" v-html="$t('landing.about.title')"></h2>
+        </div>
+
         <div class="about-grid">
           <div class="about-image-col reveal-left" id="about-image-col">
             <div class="about-image-wrap">
@@ -268,8 +273,6 @@ onMounted(() => {
             </div>
           </div>
           <div class="about-content-col reveal-right" id="about-content-col">
-            <p class="section-eyebrow">{{ $t('landing.about.eyebrow') }}</p>
-            <h2 class="section-title" v-html="$t('landing.about.title')"></h2>
             <p class="about-text">{{ $t('landing.about.p1') }}</p>
             <p class="about-text">{{ $t('landing.about.p2') }}</p>
             <p class="about-text">{{ $t('landing.about.p3') }}</p>
@@ -307,32 +310,36 @@ onMounted(() => {
                 <span class="credential-pill-ext" aria-hidden="true">↗</span>
               </a>
             </div>
+          </div>
+        </div>
 
-            <!-- Official Verified Badges -->
-            <div class="verified-badges" id="verified-badges">
-              <a
-                v-for="cert in certifications"
-                :key="cert.id"
-                :href="cert.verifyUrl"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="verified-badge-card"
-                :title="locale === 'es' ? 'Verificar credencial oficial en NASM' : 'Verify official credential on NASM'"
-              >
-                <img :src="cert.badgeUrl" :alt="locale === 'es' ? cert.name_es : cert.name_en" class="verified-badge-img" />
-                <div class="verified-badge-info">
-                  <span class="verified-badge-tag">
-                    <span class="verified-dot"></span>
-                    {{ locale === 'es' ? 'Verificado · NASM' : 'Verified · NASM' }}
-                  </span>
-                  <strong class="verified-badge-title">{{ locale === 'es' ? cert.name_es : cert.name_en }}</strong>
-                  <span class="verified-badge-verify">
-                    {{ locale === 'es' ? 'Ver credencial' : 'View credential' }} ↗
-                  </span>
-                </div>
-              </a>
-            </div>
-            <a href="#pricing" class="btn btn-primary" id="about-cta-btn">{{ $t('landing.about.btn') }}</a>
+        <!-- Full-width row: Official Verified Badges & CTA -->
+        <div class="about-bottom-row reveal-up">
+          <div class="verified-badges" id="verified-badges">
+            <a
+              v-for="cert in certifications"
+              :key="cert.id"
+              :href="cert.verifyUrl"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="verified-badge-card"
+              :title="locale === 'es' ? 'Verificar credencial oficial en NASM' : 'Verify official credential on NASM'"
+            >
+              <img :src="cert.badgeUrl" :alt="locale === 'es' ? cert.name_es : cert.name_en" class="verified-badge-img" />
+              <div class="verified-badge-info">
+                <span class="verified-badge-tag">
+                  <span class="verified-dot"></span>
+                  {{ locale === 'es' ? 'Verificado · NASM' : 'Verified · NASM' }}
+                </span>
+                <strong class="verified-badge-title">{{ locale === 'es' ? cert.name_es : cert.name_en }}</strong>
+                <span class="verified-badge-verify">
+                  {{ locale === 'es' ? 'Ver credencial' : 'View credential' }} ↗
+                </span>
+              </div>
+            </a>
+          </div>
+          <div class="about-cta-wrap">
+            <a href="#pricing" class="btn btn-primary btn-large" id="about-cta-btn">{{ $t('landing.about.btn') }}</a>
           </div>
         </div>
       </div>
