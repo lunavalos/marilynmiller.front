@@ -3,6 +3,88 @@ import { onMounted } from 'vue'
 
 const { locale, setLocale } = useI18n()
 
+const config = useRuntimeConfig()
+const { data: websiteContent } = await useFetch(`${config.public.apiBase}/content`)
+
+// Subscribe Modal State
+const showSubscribeModal = ref(false)
+const certifications = [
+  {
+    id: 'nasm-wfs',
+    name_en: "Women's Fitness Specialist (WFS)",
+    name_es: 'Especialista en Fitness Femenino (WFS)',
+    issuer: 'NASM',
+    badgeUrl: '/badges/nasm-wfs.png',
+    verifyUrl: 'https://credentials.nasm.org/3ec96f89-e74c-4636-982f-a9b4fdf397a4#acc.bsSdyCz5'
+  },
+  {
+    id: 'nasm-cnc',
+    name_en: 'Certified Nutrition Coach (CNC)',
+    name_es: 'Coach de Nutrición Certificada (CNC)',
+    issuer: 'NASM',
+    badgeUrl: '/badges/nasm-cnc.png',
+    verifyUrl: 'https://credentials.nasm.org/9a783e36-3561-43a1-803e-900ba855270b#acc.D4JUkFcZ'
+  },
+  {
+    id: 'nasm-cwc',
+    name_en: 'Certified Wellness Coach (CWC)',
+    name_es: 'Coach de Bienestar Certificada (CWC)',
+    issuer: 'NASM',
+    badgeUrl: '/badges/nasm-cwc.png',
+    verifyUrl: 'https://credentials.nasm.org/ad47521f-f5fe-4b24-b9ba-0d61a8689e30#acc.76FRzU2n'
+  }
+]
+const subscribeForm = ref({
+  name: '',
+  email: '',
+  password: '',
+  plan_id: null
+})
+const subscribeError = ref('')
+const isSubscribing = ref(false)
+
+const openSubscribeModal = (planId) => {
+  subscribeForm.value.plan_id = planId
+  showSubscribeModal.value = true
+}
+
+const closeSubscribeModal = () => {
+  showSubscribeModal.value = false
+  subscribeError.value = ''
+  subscribeForm.value = { name: '', email: '', password: '', plan_id: null }
+}
+
+const handleSubscribe = async () => {
+  subscribeError.value = ''
+  isSubscribing.value = true
+  
+  try {
+    const response = await fetch(`${config.public.apiBase}/register`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(subscribeForm.value)
+    })
+    
+    const data = await response.json()
+    
+    if (!response.ok) {
+      if (data.errors) {
+        subscribeError.value = Object.values(data.errors).flat().join(', ')
+      } else {
+        subscribeError.value = data.error || 'Registration failed'
+      }
+      isSubscribing.value = false
+      return
+    }
+    
+    // Redirect to Stripe checkout
+    window.location.href = data.checkout_url
+  } catch (err) {
+    subscribeError.value = 'Network error. Please try again.'
+    isSubscribing.value = false
+  }
+}
+
 onMounted(() => {
   // Reveal animations
   const revealElements = document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right')
@@ -87,7 +169,7 @@ onMounted(() => {
       })
     }
   }, { threshold: 0.5 })
-  const statsStrip = document.querySelector('.stats-strip')
+  const statsStrip = document.querySelector('.hero-stats-row')
   if (statsStrip) {
     statsObserver.observe(statsStrip)
   }
@@ -126,56 +208,42 @@ onMounted(() => {
          HERO
     ═══════════════════════════════════════════ -->
     <section id="home" class="hero">
-      <div class="hero-media">
-        <img src="/hero.png" alt="Marilyn Miller fitness coaching" class="hero-img" />
-        <div class="hero-overlay"></div>
+      <div class="container hero-container">
+        <div class="hero-content">
+          <p class="hero-eyebrow reveal-up" v-html="(locale === 'es' ? (websiteContent?.hero?.eyebrow_es || websiteContent?.hero?.eyebrow) : websiteContent?.hero?.eyebrow) || $t('landing.hero.eyebrow')"></p>
+          <h1 class="hero-title reveal-up" style="--delay: 0.1s">
+            <template v-if="locale === 'es' ? (websiteContent?.hero?.title_es || websiteContent?.hero?.title) : websiteContent?.hero?.title">
+              <span v-html="locale === 'es' ? (websiteContent.hero.title_es || websiteContent.hero.title) : websiteContent.hero.title"></span>
+            </template>
+            <template v-else>
+              <span v-html="$t('landing.hero.title_1')"></span><br />
+              <span class="hero-title-script" v-html="$t('landing.hero.title_script')"></span>
+            </template>
+          </h1>
+          <p class="hero-subtitle reveal-up" style="--delay: 0.2s" v-html="(locale === 'es' ? (websiteContent?.hero?.subtitle_es || websiteContent?.hero?.subtitle) : websiteContent?.hero?.subtitle) || $t('landing.hero.subtitle')"></p>
+          <div class="hero-actions reveal-up" style="--delay: 0.3s">
+            <a href="#pricing" class="btn btn-primary btn-large" id="hero-cta-btn">{{ $t('landing.hero.btn_start') }}</a>
+            <a href="#about" class="btn btn-secondary btn-large" id="hero-learn-btn">{{ $t('landing.hero.btn_story') }}</a>
+          </div>
+        </div>
+        <div class="hero-media reveal-left">
+          <img :src="websiteContent?.hero?.image || '/hero.png'" alt="Marilyn Miller fitness coaching" class="hero-img" />
+          <div class="hero-pill">
+            <span class="pill-icon">♡</span> {{ (locale === 'es' ? (websiteContent?.hero?.pill_text_es || websiteContent?.hero?.pill_text) : websiteContent?.hero?.pill_text) || 'CORE & PELVIC FLOOR SAFE' }}
+          </div>
+        </div>
       </div>
-      <div class="hero-content">
-        <p class="hero-eyebrow reveal-up" v-html="$t('landing.hero.eyebrow')"></p>
-        <h1 class="hero-title reveal-up" style="--delay: 0.1s">
-          <span v-html="$t('landing.hero.title_1')"></span><br />
-          <span class="hero-title-script" v-html="$t('landing.hero.title_script')"></span>
-        </h1>
-        <p class="hero-subtitle reveal-up" style="--delay: 0.2s" v-html="$t('landing.hero.subtitle')"></p>
-        <div class="hero-actions reveal-up" style="--delay: 0.3s">
-          <a href="#pricing" class="btn btn-primary btn-large" id="hero-cta-btn">{{ $t('landing.hero.btn_start') }}</a>
-          <a href="#about" class="btn btn-ghost btn-large" id="hero-learn-btn">{{ $t('landing.hero.btn_story') }}</a>
-        </div>
-        <div class="hero-badges reveal-up" style="--delay: 0.4s">
-          <span class="badge" id="badge-nasm"><span class="badge-icon">✦</span> {{ $t('landing.hero.badge_nasm') }}</span>
-          <span class="badge" id="badge-nutrition"><span class="badge-icon">✦</span> {{ $t('landing.hero.badge_nutrition') }}</span>
-          <span class="badge" id="badge-wellness"><span class="badge-icon">✦</span> {{ $t('landing.hero.badge_wellness') }}</span>
-        </div>
-      </div>
-      <a href="#about" class="hero-scroll" aria-label="Scroll down" id="hero-scroll-btn">
-        <span class="scroll-line"></span>
-        <span class="scroll-text">{{ $t('landing.hero.scroll') }}</span>
-      </a>
-    </section>
-
-    <!-- ═══════════════════════════════════════════
-         STATS STRIP
-    ═══════════════════════════════════════════ -->
-    <section class="stats-strip">
-      <div class="stats-container">
-        <div class="stat reveal-up" id="stat-women">
-          <span class="stat-number" data-target="500">0</span><span class="stat-plus">+</span>
-          <span class="stat-label">{{ $t('landing.stats.women') }}</span>
-        </div>
-        <div class="stat-divider"></div>
-        <div class="stat reveal-up" id="stat-years" style="--delay: 0.1s">
-          <span class="stat-number" data-target="8">0</span><span class="stat-plus">+</span>
-          <span class="stat-label">{{ $t('landing.stats.years') }}</span>
-        </div>
-        <div class="stat-divider"></div>
-        <div class="stat reveal-up" id="stat-classes" style="--delay: 0.2s">
-          <span class="stat-number" data-target="3">0</span>
-          <span class="stat-label">{{ $t('landing.stats.certs') }}</span>
-        </div>
-        <div class="stat-divider"></div>
-        <div class="stat reveal-up" id="stat-community" style="--delay: 0.3s">
-          <span class="stat-number" data-target="100">0</span><span class="stat-plus">%</span>
-          <span class="stat-label">{{ $t('landing.stats.community') }}</span>
+      
+      <div class="container hero-stats-container">
+        <div class="hero-stats-row reveal-up" style="--delay: 0.4s" v-if="websiteContent?.stats?.length">
+          <template v-for="(stat, index) in websiteContent.stats" :key="index">
+            <div class="hero-stat">
+              <div class="stat-value">
+                <span class="stat-number" :data-target="parseInt(stat.value) || 0">0</span><span class="stat-plus">{{ stat.value.replace(/[0-9]/g, '') }}</span>
+              </div>
+              <span class="stat-label">{{ locale === 'es' ? stat.label_es : stat.label_en }}</span>
+            </div>
+          </template>
         </div>
       </div>
     </section>
@@ -190,11 +258,11 @@ onMounted(() => {
             <div class="about-image-wrap">
               <img src="/profile_marilynmiller.png" alt="Marilyn Miller — Fitness & Nutrition Coach" class="about-img" />
               <div class="about-image-accent"></div>
-              <div class="about-cert-card" id="about-cert-card">
-                <span class="cert-icon">🏅</span>
-                <div>
-                  <strong>NASM Certified</strong>
-                  <span>Personal Trainer & Coach</span>
+              <div class="hero-pill" style="bottom: -20px; box-shadow: var(--shadow-sm);">
+                <span class="pill-icon" style="font-size: 1rem; color: var(--rose);">♡</span>
+                <div style="display: flex; flex-direction: column; line-height: 1.2;">
+                  <span style="font-size: 0.65rem; color: var(--rose); letter-spacing: 0.1em;">FOUNDER OF MILLYFIT</span>
+                  <span style="font-size: 0.75rem;">Marilyn Miller, B.S., Specialist</span>
                 </div>
               </div>
             </div>
@@ -211,9 +279,58 @@ onMounted(() => {
             <p class="about-text">{{ $t('landing.about.p4') }}</p>
             <div class="about-credentials" id="about-credentials">
               <div class="credential-pill"><span>✓</span> {{ $t('landing.about.cred_1') }}</div>
-              <div class="credential-pill"><span>✓</span> {{ $t('landing.about.cred_2') }}</div>
-              <div class="credential-pill"><span>✓</span> {{ $t('landing.about.cred_3') }}</div>
-              <div class="credential-pill"><span>✓</span> {{ $t('landing.about.cred_4') }}</div>
+              <a
+                href="https://credentials.nasm.org/3ec96f89-e74c-4636-982f-a9b4fdf397a4#acc.bsSdyCz5"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="credential-pill credential-pill--link"
+              >
+                <span>✓</span> {{ $t('landing.about.cred_2') }}
+                <span class="credential-pill-ext" aria-hidden="true">↗</span>
+              </a>
+              <a
+                href="https://credentials.nasm.org/9a783e36-3561-43a1-803e-900ba855270b#acc.D4JUkFcZ"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="credential-pill credential-pill--link"
+              >
+                <span>✓</span> {{ $t('landing.about.cred_3') }}
+                <span class="credential-pill-ext" aria-hidden="true">↗</span>
+              </a>
+              <a
+                href="https://credentials.nasm.org/ad47521f-f5fe-4b24-b9ba-0d61a8689e30#acc.76FRzU2n"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="credential-pill credential-pill--link"
+              >
+                <span>✓</span> {{ $t('landing.about.cred_4') }}
+                <span class="credential-pill-ext" aria-hidden="true">↗</span>
+              </a>
+            </div>
+
+            <!-- Official Verified Badges -->
+            <div class="verified-badges" id="verified-badges">
+              <a
+                v-for="cert in certifications"
+                :key="cert.id"
+                :href="cert.verifyUrl"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="verified-badge-card"
+                :title="locale === 'es' ? 'Verificar credencial oficial en NASM' : 'Verify official credential on NASM'"
+              >
+                <img :src="cert.badgeUrl" :alt="locale === 'es' ? cert.name_es : cert.name_en" class="verified-badge-img" />
+                <div class="verified-badge-info">
+                  <span class="verified-badge-tag">
+                    <span class="verified-dot"></span>
+                    {{ locale === 'es' ? 'Verificado · NASM' : 'Verified · NASM' }}
+                  </span>
+                  <strong class="verified-badge-title">{{ locale === 'es' ? cert.name_es : cert.name_en }}</strong>
+                  <span class="verified-badge-verify">
+                    {{ locale === 'es' ? 'Ver credencial' : 'View credential' }} ↗
+                  </span>
+                </div>
+              </a>
             </div>
             <a href="#pricing" class="btn btn-primary" id="about-cta-btn">{{ $t('landing.about.btn') }}</a>
           </div>
@@ -231,9 +348,7 @@ onMounted(() => {
           <h2 class="section-title" v-html="$t('landing.features.title')"></h2>
           <p class="section-subtitle">{{ $t('landing.features.subtitle') }}</p>
         </div>
-        <div class="features-image-block reveal-up" id="features-image-block" style="--delay: 0.1s">
-          <img src="/features.png" alt="MillyFit workouts, nutrition and community" class="features-img" />
-        </div>
+
         <div class="features-grid">
           <div class="feature-card reveal-up" id="feature-strength" style="--delay: 0s">
             <div class="feature-icon-wrap" style="--icon-color: #D88EA2;">
@@ -292,59 +407,25 @@ onMounted(() => {
           <p class="section-subtitle">{{ $t('landing.pricing.subtitle') }}</p>
         </div>
         <div class="pricing-grid">
-          <!-- Plan 1 -->
-          <div class="pricing-card reveal-up" id="pricing-trial" style="--delay: 0s">
-            <div class="pricing-tag">{{ $t('landing.pricing.p1_tag') }}</div>
-            <div class="pricing-header">
-              <span class="pricing-icon">🌱</span>
-              <h3 class="pricing-plan-name">{{ $t('landing.pricing.p1_name') }}</h3>
-              <p class="pricing-description">{{ $t('landing.pricing.p1_desc') }}</p>
+          <template v-if="websiteContent?.plans?.length">
+            <div v-for="(plan, idx) in websiteContent.plans" :key="plan.id || idx" class="pricing-card reveal-up" :class="{ 'pricing-card--featured': plan.is_featured }" :style="`--delay: ${idx * 0.1}s`">
+              <div class="pricing-header">
+                <h3 class="pricing-plan-name">{{ locale === 'es' ? plan.name_es : plan.name_en }}</h3>
+                <p class="pricing-description">{{ locale === 'es' ? plan.description_es : plan.description_en }}</p>
+                <div class="pricing-price" style="font-size: 2rem; font-weight: 700; margin-top: 0.5rem;">${{ plan.price }} <span class="pricing-currency" style="font-size: 1rem; font-weight: 400;">USD</span></div>
+              </div>
+              
+              <ul class="pricing-features">
+                <li v-for="(feat, fIdx) in plan.features" :key="fIdx">
+                  <span class="check">✓</span> {{ locale === 'es' ? feat.feature_es : feat.feature_en }}
+                </li>
+              </ul>
+              
+              <button @click.prevent="openSubscribeModal(plan.id)" class="btn btn-block btn-primary">
+                {{ locale === 'es' ? 'Seleccionar plan' : 'Select plan' }}
+              </button>
             </div>
-            <ul class="pricing-features" id="pricing-trial-features">
-              <li><span class="check">✓</span> {{ $t('landing.pricing.p1_f1') }}</li>
-              <li><span class="check">✓</span> {{ $t('landing.pricing.p1_f2') }}</li>
-              <li><span class="check">✓</span> {{ $t('landing.pricing.p1_f3') }}</li>
-              <li><span class="check">✓</span> {{ $t('landing.pricing.p1_f4') }}</li>
-              <li><span class="check">✓</span> {{ $t('landing.pricing.p1_f5') }}</li>
-            </ul>
-            <a href="https://marilynmiller.store/shop/7d25d13e-e95d-4b47-89e2-c44b709224a8" class="btn btn-secondary btn-block" id="pricing-trial-btn" target="_blank" rel="noopener">{{ $t('landing.pricing.p1_btn') }}</a>
-          </div>
-
-          <!-- Plan 2 -->
-          <div class="pricing-card pricing-card--featured reveal-up" id="pricing-membership" style="--delay: 0.1s">
-            <div class="pricing-popular-badge">{{ $t('landing.pricing.p2_tag') }}</div>
-            <div class="pricing-header">
-              <span class="pricing-icon">⭐</span>
-              <h3 class="pricing-plan-name">{{ $t('landing.pricing.p2_name') }}</h3>
-              <p class="pricing-description">{{ $t('landing.pricing.p2_desc') }}</p>
-            </div>
-            <ul class="pricing-features" id="pricing-membership-features">
-              <li><span class="check">✓</span> {{ $t('landing.pricing.p2_f1') }}</li>
-              <li><span class="check">✓</span> {{ $t('landing.pricing.p2_f2') }}</li>
-              <li><span class="check">✓</span> {{ $t('landing.pricing.p2_f3') }}</li>
-              <li><span class="check">✓</span> {{ $t('landing.pricing.p2_f4') }}</li>
-              <li><span class="check">✓</span> {{ $t('landing.pricing.p2_f5') }}</li>
-              <li><span class="check">✓</span> {{ $t('landing.pricing.p2_f6') }}</li>
-              <li><span class="check">✓</span> {{ $t('landing.pricing.p2_f7') }}</li>
-            </ul>
-            <a href="https://marilynmiller.store/shop/ed216b6c-f63a-474e-83f7-22c6db120fd6" class="btn btn-primary btn-block" id="pricing-membership-btn" target="_blank" rel="noopener">{{ $t('landing.pricing.p2_btn') }}</a>
-          </div>
-
-          <!-- Plan 3 -->
-          <div class="pricing-card reveal-up" id="pricing-dropin" style="--delay: 0.2s">
-            <div class="pricing-header">
-              <span class="pricing-icon">⚡</span>
-              <h3 class="pricing-plan-name">{{ $t('landing.pricing.p3_name') }}</h3>
-              <p class="pricing-description">{{ $t('landing.pricing.p3_desc') }}</p>
-            </div>
-            <ul class="pricing-features" id="pricing-dropin-features">
-              <li><span class="check">✓</span> {{ $t('landing.pricing.p3_f1') }}</li>
-              <li><span class="check">✓</span> {{ $t('landing.pricing.p3_f2') }}</li>
-              <li><span class="check">✓</span> {{ $t('landing.pricing.p3_f3') }}</li>
-              <li><span class="check">✓</span> {{ $t('landing.pricing.p3_f4') }}</li>
-            </ul>
-            <a href="https://marilynmiller.store/shop/025e5104-478f-4f75-adb8-0b8fa9a48e8c" class="btn btn-secondary btn-block" id="pricing-dropin-btn" target="_blank" rel="noopener">{{ $t('landing.pricing.p3_btn') }}</a>
-          </div>
+          </template>
         </div>
         <p class="pricing-note reveal-up" style="--delay: 0.3s" id="pricing-guarantee" v-html="$t('landing.pricing.note')"></p>
       </div>
@@ -363,18 +444,30 @@ onMounted(() => {
              Since they are static right now in blade, I'll keep them static. -->
         <div class="testimonials-track-wrap">
           <div class="testimonials-track" id="testimonials-track">
-            <div class="testimonial-card" id="testimonial-1">
-              <div class="testimonial-stars">★★★★★</div>
-              <p class="testimonial-quote">"Marilyn completely changed how I see myself. For the first time in years, I feel strong, confident, and like I'm actually doing something for ME. The community here is incredible."</p>
-              <div class="testimonial-author">
-                <div class="testimonial-avatar" style="background: linear-gradient(135deg, #D88EA2, #f0b8c8);">S</div>
-                <div>
-                  <strong>Sofia R.</strong>
-                  <span>MillyFit Member — 6 months</span>
+            <template v-if="websiteContent?.testimonials?.length">
+              <div v-for="(testim, idx) in websiteContent.testimonials" :key="idx" class="testimonial-card">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-quote">"{{ locale === 'es' ? testim.quote_es : testim.quote_en }}"</p>
+                <div class="testimonial-author">
+                  <div>
+                    <strong>{{ testim.author }}</strong>
+                    <span>{{ locale === 'es' ? testim.time_es : testim.time_en }}</span>
+                  </div>
                 </div>
               </div>
-            </div>
-            <!-- More testimonials can be added... -->
+            </template>
+            <template v-else>
+              <div class="testimonial-card" id="testimonial-1">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-quote">"Marilyn completely changed how I see myself. For the first time in years, I feel strong, confident, and like I'm actually doing something for ME. The community here is incredible."</p>
+                <div class="testimonial-author">
+                  <div>
+                    <strong>Sofia R.</strong>
+                    <span>MillyFit Member — 6 months</span>
+                  </div>
+                </div>
+              </div>
+            </template>
           </div>
         </div>
       </div>
@@ -393,24 +486,37 @@ onMounted(() => {
             <a href="#pricing" class="btn btn-primary" id="faq-cta-btn" style="margin-top: 2rem;">{{ $t('landing.faq.btn') }}</a>
           </div>
           <div class="faq-list reveal-right" id="faq-list">
-            <div class="faq-item" id="faq-1">
-              <button class="faq-question" aria-expanded="false" id="faq-btn-1">
-                {{ $t('landing.faq.q1') }}
-                <span class="faq-icon">+</span>
-              </button>
-              <div class="faq-answer" id="faq-answer-1">
-                <p v-html="$t('landing.faq.a1')"></p>
+            <template v-if="websiteContent?.faqs?.length">
+              <div v-for="(faq, idx) in websiteContent.faqs" :key="idx" class="faq-item">
+                <button class="faq-question" aria-expanded="false">
+                  {{ locale === 'es' ? faq.question_es : faq.question_en }}
+                  <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                  <p v-html="locale === 'es' ? faq.answer_es : faq.answer_en"></p>
+                </div>
               </div>
-            </div>
-            <!-- Additional FAQs... (using static for brevity, but referencing i18n) -->
-            <div class="faq-item" id="faq-2">
-              <button class="faq-question" aria-expanded="false">{{ $t('landing.faq.q2') }}<span class="faq-icon">+</span></button>
-              <div class="faq-answer"><p v-html="$t('landing.faq.a2')"></p></div>
-            </div>
-            <div class="faq-item" id="faq-3">
-              <button class="faq-question" aria-expanded="false">{{ $t('landing.faq.q3') }}<span class="faq-icon">+</span></button>
-              <div class="faq-answer"><p v-html="$t('landing.faq.a3')"></p></div>
-            </div>
+            </template>
+            <template v-else>
+              <div class="faq-item" id="faq-1">
+                <button class="faq-question" aria-expanded="false" id="faq-btn-1">
+                  {{ $t('landing.faq.q1') }}
+                  <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer" id="faq-answer-1">
+                  <p v-html="$t('landing.faq.a1')"></p>
+                </div>
+              </div>
+              <!-- Additional FAQs... (using static for brevity, but referencing i18n) -->
+              <div class="faq-item" id="faq-2">
+                <button class="faq-question" aria-expanded="false">{{ $t('landing.faq.q2') }}<span class="faq-icon">+</span></button>
+                <div class="faq-answer"><p v-html="$t('landing.faq.a2')"></p></div>
+              </div>
+              <div class="faq-item" id="faq-3">
+                <button class="faq-question" aria-expanded="false">{{ $t('landing.faq.q3') }}<span class="faq-icon">+</span></button>
+                <div class="faq-answer"><p v-html="$t('landing.faq.a3')"></p></div>
+              </div>
+            </template>
           </div>
         </div>
       </div>
@@ -428,7 +534,7 @@ onMounted(() => {
           <p class="final-cta-subtitle" v-html="$t('landing.cta.subtitle')"></p>
           <p class="final-cta-tagline" v-html="$t('landing.cta.tagline')"></p>
           <div class="final-cta-actions" id="final-cta-actions">
-            <a href="#pricing" class="btn btn-white btn-large" id="final-cta-primary-btn">{{ $t('landing.cta.btn_primary') }}</a>
+            <a href="#pricing" class="btn btn-primary btn-large" id="final-cta-primary-btn">{{ $t('landing.cta.btn_primary') }}</a>
             <a href="https://www.instagram.com/millyfitsculptandstrength" target="_blank" rel="noopener" class="btn btn-ghost-white btn-large" id="final-cta-ig-btn">{{ $t('landing.cta.btn_ig') }}</a>
           </div>
         </div>
@@ -463,5 +569,37 @@ onMounted(() => {
         </div>
       </div>
     </footer>
+
+    <!-- Subscribe Modal -->
+    <div v-if="showSubscribeModal" class="subscribe-modal-overlay" @click.self="closeSubscribeModal">
+      <div class="subscribe-modal">
+        <button class="close-btn" @click="closeSubscribeModal">&times;</button>
+        <h3>Create Your Account</h3>
+        <p>You'll be redirected to Stripe to securely complete your subscription.</p>
+        
+        <form @submit.prevent="handleSubscribe" class="subscribe-form">
+          <div v-if="subscribeError" class="alert alert-danger">{{ subscribeError }}</div>
+          
+          <div class="form-group">
+            <label>Name</label>
+            <input type="text" v-model="subscribeForm.name" required class="form-control" />
+          </div>
+          
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" v-model="subscribeForm.email" required class="form-control" />
+          </div>
+          
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" v-model="subscribeForm.password" required class="form-control" minlength="8" />
+          </div>
+          
+          <button type="submit" class="btn btn-primary btn-block" :disabled="isSubscribing" style="margin-top: 1rem;">
+            {{ isSubscribing ? 'Loading...' : 'Proceed to Checkout' }}
+          </button>
+        </form>
+      </div>
+    </div>
   </div>
 </template>
