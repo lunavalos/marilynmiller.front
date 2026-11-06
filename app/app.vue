@@ -256,7 +256,7 @@ onMounted(() => {
         <div class="about-grid">
           <div class="about-image-col reveal-left" id="about-image-col">
             <div class="about-image-wrap">
-              <img src="/profile_marilynmiller.png" alt="Marilyn Miller — Fitness & Nutrition Coach" class="about-img" />
+              <img src="/millyfit-profile-pic.webp" alt="Marilyn Miller — Fitness & Nutrition Coach" class="about-img" />
               <div class="about-image-accent"></div>
               <div class="hero-pill" style="bottom: -20px; box-shadow: var(--shadow-sm);">
                 <span class="pill-icon" style="font-size: 1rem; color: var(--rose);">♡</span>
