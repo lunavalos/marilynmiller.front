@@ -8,6 +8,7 @@ const { data: websiteContent } = await useFetch(`${config.public.apiBase}/conten
 
 // Subscribe Modal State
 const showSubscribeModal = ref(false)
+const showPrivacyModal = ref(false)
 const certifications = [
   {
     id: 'nasm-wfs',
@@ -569,7 +570,19 @@ onMounted(() => {
             </a>
             <p class="footer-tagline" v-html="$t('landing.footer.tagline')"></p>
             <div class="footer-socials" id="footer-socials">
-              <!-- Icons omitted for brevity, but they should be in standard HTML -->
+              <a
+                href="https://www.instagram.com/millyfitsculptandstrength"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="social-link"
+                aria-label="Instagram"
+              >
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+              </a>
             </div>
           </div>
           <div class="footer-links-group">
@@ -580,11 +593,50 @@ onMounted(() => {
               <li><a href="#pricing">{{ $t('landing.nav.join') }}</a></li>
               <li><a href="#testimonials">{{ $t('landing.nav.community') }}</a></li>
               <li><a href="#faq">FAQ</a></li>
+              <li><a href="#privacy-policy" @click.prevent="showPrivacyModal = true">{{ $t('landing.footer.privacy_link') }}</a></li>
             </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <div class="footer-legal">
+            <span>&copy; {{ new Date().getFullYear() }} MillyFit. {{ $t('landing.footer.rights') }}</span>
+            <span class="footer-legal-sep">·</span>
+            <a href="#privacy-policy" @click.prevent="showPrivacyModal = true" class="footer-privacy-link">
+              {{ $t('landing.footer.privacy_link') }}
+            </a>
+          </div>
+          <div class="footer-credits">
+            <span>{{ $t('landing.footer.developed_by') }}</span>
+            <a href="https://lunavalos.com" target="_blank" rel="noopener noreferrer" class="footer-credits-link" aria-label="LunAvalos">
+              <img src="/credits-logo.webp" alt="LunAvalos" class="footer-credits-logo" />
+            </a>
           </div>
         </div>
       </div>
     </footer>
+
+    <!-- Privacy Policy Modal -->
+    <div v-if="showPrivacyModal" class="subscribe-modal-overlay" @click.self="showPrivacyModal = false">
+      <div class="subscribe-modal privacy-modal">
+        <button class="close-btn" @click="showPrivacyModal = false" aria-label="Close">&times;</button>
+        <h3>{{ $t('landing.privacy.title') }}</h3>
+        <p class="privacy-updated">{{ $t('landing.privacy.updated') }}</p>
+        <div class="privacy-body">
+          <h4>{{ $t('landing.privacy.s1_title') }}</h4>
+          <p>{{ $t('landing.privacy.s1_text') }}</p>
+
+          <h4>{{ $t('landing.privacy.s2_title') }}</h4>
+          <p>{{ $t('landing.privacy.s2_text') }}</p>
+
+          <h4>{{ $t('landing.privacy.s3_title') }}</h4>
+          <p>{{ $t('landing.privacy.s3_text') }}</p>
+
+          <h4>{{ $t('landing.privacy.s4_title') }}</h4>
+          <p>{{ $t('landing.privacy.s4_text') }}</p>
+        </div>
+      </div>
+    </div>
 
     <!-- Subscribe Modal -->
     <div v-if="showSubscribeModal" class="subscribe-modal-overlay" @click.self="closeSubscribeModal">

@@ -124,7 +124,22 @@
       "tagline": "Coaching de Fuerza y Transformación para Mujeres<br />Jacksonville, FL",
       "links_title_1": "Enlaces Rápidos",
       "links_title_2": "Planes",
-      "links_title_3": "Contacto"
+      "links_title_3": "Contacto",
+      "rights": "Todos los derechos reservados.",
+      "privacy_link": "Política de Privacidad",
+      "developed_by": "Desarrollado por"
+    },
+    "privacy": {
+      "title": "Política de Privacidad",
+      "updated": "Última actualización: Noviembre 2026",
+      "s1_title": "1. Información que Recopilamos",
+      "s1_text": "Al registrarte o suscribirte a MillyFit, recopilamos datos personales como tu nombre, correo electrónico y datos de pago (procesados de forma segura a través de Stripe) para brindarte acceso a tus clases, coaching y comunidad.",
+      "s2_title": "2. Uso de tu Información",
+      "s2_text": "Utilizamos tu información únicamente para gestionar tu membresía, reservar sesiones, ofrecerte seguimiento de entrenamiento y nutrición, y enviarte avisos importantes sobre tu cuenta.",
+      "s3_title": "3. Protección de Datos y Terceros",
+      "s3_text": "Nunca vendemos ni compartimos tus datos personales con terceros con fines publicitarios. Todos los pagos son procesados directamente por Stripe bajo estándares de seguridad PCI-DSS.",
+      "s4_title": "4. Contacto",
+      "s4_text": "Si tienes alguna duda sobre esta Política de Privacidad o deseas actualizar o eliminar tus datos personales, contáctanos directamente por Instagram ({'@'}millyfitsculptandstrength)."
     }
   }
 }

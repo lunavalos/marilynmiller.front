@@ -124,7 +124,22 @@
       "tagline": "Women's Strength &amp; Transformation Coaching<br />Jacksonville, FL",
       "links_title_1": "Quick Links",
       "links_title_2": "Plans",
-      "links_title_3": "Contact"
+      "links_title_3": "Contact",
+      "rights": "All rights reserved.",
+      "privacy_link": "Privacy Policy",
+      "developed_by": "Developed by"
+    },
+    "privacy": {
+      "title": "Privacy Policy",
+      "updated": "Last updated: November 2026",
+      "s1_title": "1. Information We Collect",
+      "s1_text": "When you register or subscribe to MillyFit, we collect personal information such as your name, email address, and payment details (processed securely via Stripe) to provide access to classes, coaching, and community features.",
+      "s2_title": "2. How We Use Your Information",
+      "s2_text": "We use your information exclusively to manage your membership, schedule sessions, provide personalized fitness and nutrition guidance, and send important updates about your account.",
+      "s3_title": "3. Data Protection & Third Parties",
+      "s3_text": "We never sell or rent your personal data. Payments are handled directly by Stripe under PCI-DSS security standards. Your data is stored securely and accessed only as needed to deliver our services.",
+      "s4_title": "4. Contact Us",
+      "s4_text": "If you have questions about this Privacy Policy or wish to update or delete your personal data, please reach out to Marilyn directly via Instagram ({'@'}millyfitsculptandstrength)."
     }
   }
 }
